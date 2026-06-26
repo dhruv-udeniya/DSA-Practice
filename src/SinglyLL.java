@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 class Node{
     int data;
@@ -21,6 +22,34 @@ public class SinglyLL {
 
     SinglyLL(int len){
         this.len = len;
+    }
+
+
+    public void reverse(){
+        Node temp = head;
+        Node prev = null;
+
+        while(temp != null){
+            Node front = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp = front;
+        }
+        head = prev;
+    }
+
+    public void reverse(){
+        Node mover = head;
+        Stack<Integer> st = new Stack<>();
+        while(mover != null){
+            st.add(mover.data);
+            mover = mover.next;
+        }
+        mover = head;
+        while (mover != null){
+            mover.data = st.pop();
+            mover = mover.next;
+        }
     }
 
     public void insertHead(int data){
@@ -172,7 +201,7 @@ public class SinglyLL {
         l1.traverse();
 
 
-        l1.DeleteKth(3);
+        l1.reverse();
         l1.traverse();
     }
 
